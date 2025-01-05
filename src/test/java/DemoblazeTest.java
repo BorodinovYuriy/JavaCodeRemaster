@@ -12,7 +12,6 @@ public class DemoblazeTest extends BaseUiTest {
         BasePage basePage = new BasePage(webDriver);
         BeforeLogin beforeLogin = new BeforeLogin(webDriver);
         AfterLogin afterLogin = new AfterLogin(webDriver);
-        ProductCard productCard = new ProductCard(webDriver);
         Cart cart = new Cart(webDriver);
         Order order = new Order(webDriver);
 
