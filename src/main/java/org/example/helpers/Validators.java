@@ -65,19 +65,6 @@ public class Validators {
         return currentDate.isEqual(parsedDate);
     }
 
-    //Для API
-    public static Long parseAndReturnTimeDiff(String checkedTime){
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-            ZonedDateTime actualDateTime = ZonedDateTime.parse(
-                    checkedTime,
-                    formatter.withZone(ZoneId.of("UTC")));
-            ZonedDateTime currentDateTime = ZonedDateTime.now(ZoneId.of("UTC"));
-            return Math.abs(Duration.between(actualDateTime, currentDateTime).getSeconds());
-        } catch (DateTimeParseException e) {
-            return null;
-        }
 
-    }
 
 }

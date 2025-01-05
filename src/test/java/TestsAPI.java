@@ -1,4 +1,5 @@
 import io.restassured.RestAssured;
+import org.example.helpers.Utility;
 import org.example.helpers.Validators;
 import org.junit.jupiter.api.Test;
 
@@ -70,8 +71,8 @@ public class TestsAPI extends BaseApiTest {
                 .extract()
                 .path("updatedAt");
 
-        System.out.println("Задержка ответа при UPDATE: "+ Validators.parseAndReturnTimeDiff(updatedAt)+" sec");
-        assertThat(Validators.parseAndReturnTimeDiff(updatedAt), lessThanOrEqualTo(5L));
+        System.out.println("Задержка ответа при UPDATE: "+ Utility.parseAndReturnTimeDiff(updatedAt)+" sec");
+        assertThat(Utility.parseAndReturnTimeDiff(updatedAt), lessThanOrEqualTo(5L));
     }
 }
 

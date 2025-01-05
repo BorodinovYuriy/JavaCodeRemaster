@@ -2,6 +2,11 @@ package org.example.helpers;
 
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,5 +20,19 @@ public class Utility {
         }
         int choice = Randomizer.randomNumber(allProdName.size() - 1);
         return new HashMap<>(Map.of(allProdName.get(choice), allPrice.get(choice)));
+    }
+    //Для API
+    public static Long parseAndReturnTimeDiff(String checkedTime){
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+            ZonedDateTime actualDateTime = ZonedDateTime.parse(
+                    checkedTime,
+                    formatter.withZone(ZoneId.of("UTC")));
+            ZonedDateTime currentDateTime = ZonedDateTime.now(ZoneId.of("UTC"));
+            return Math.abs(Duration.between(actualDateTime, currentDateTime).getSeconds());
+        } catch (DateTimeParseException e) {
+            return null;
+        }
+
     }
 }
