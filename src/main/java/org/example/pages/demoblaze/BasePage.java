@@ -16,13 +16,8 @@ public class BasePage {
 
     @FindBy(xpath = "//a[text() = 'Home ' and @href='index.html']")
     protected WebElement home;
-//    @FindBy(xpath = "//a[@id='nameofuser']")
-    private String confirmLogin = "//a[@id='nameofuser']";
-    @FindBy(xpath = "//div[@id='footc']")
-    private WebElement footer;
-
-
-
+    @FindBy(xpath = "//a[@id='nameofuser']")
+    private WebElement confirmLogin;
 
     public BasePage(WebDriver webDriver){
         this.webDriver = webDriver;
@@ -34,18 +29,14 @@ public class BasePage {
         webDriver.get(baseUrl);
     }
     public boolean waitConfirm() {
-//        return wait.until(ExpectedConditions.elementToBeClickable(confirmLogin)).isDisplayed();
-        WebElement until = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(confirmLogin)));
+        WebElement until = wait.until(ExpectedConditions.visibilityOf(confirmLogin));
         return until.isDisplayed();
     }
     public void goHome(){
         wait.until(ExpectedConditions.visibilityOf(home)).click();
         waitConfirm();
     }
-    public void goFooter(){
-        Actions actions = new Actions(webDriver);
-        actions.moveToElement(footer);
-    }
+
     public void sleepSec(int sec){
         //Вынужденная мера, когда не за что зацепиться
         try {
