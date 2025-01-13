@@ -51,10 +51,12 @@ public class BeforeLogin  extends BasePage{
             return massage.contains("Sign up successful.");
     }
     public boolean logIn(){
+        //sleepSec(1);//todo дождаться исчезновения alert
         wait.until(ExpectedConditions.visibilityOf(loginButton)).click();
         wait.until(ExpectedConditions.visibilityOf(loginUsername)).sendKeys(username);
         wait.until(ExpectedConditions.visibilityOf(loginPassword)).sendKeys(password);
         wait.until(ExpectedConditions.visibilityOf(loginConfirmButton)).click();
+        sleepSec(1);
         return waitConfirm();
     }
 
